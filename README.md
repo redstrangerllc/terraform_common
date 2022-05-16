@@ -1,2 +1,2 @@
 # terraform_common
-COmmon elements for Terraform development
+Common elements for Terraform development
