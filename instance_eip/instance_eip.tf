@@ -6,6 +6,7 @@ variable	"domain"        {}
 variable  "sec_group"     {}
 variable  "instance_size" {}
 variable  "subnet"        {}
+variable  "name"          {}
 
 //Generate EC2 instance
 resource "aws_instance" "server" {
@@ -14,6 +15,10 @@ resource "aws_instance" "server" {
   key_name                = var.ssh_key
   vpc_security_group_ids  = var.sec_group
   subnet_id               = var.subnet
+  tags = {
+    Name = var.name
+  }
+
 }
 
 //Generate elastic IP

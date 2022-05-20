@@ -1,22 +1,13 @@
 //variables
 variable    "db_engine"         {}
 variable    "db_engine_rev"     {}
-variable	"db_username"       {}
+variable	  "db_username"       {}
 variable    "db_password"       {}
 variable    "sec_group"         {}
 variable    "instance_size"     {}
-variable    "subnet"            {}
+variable    "subnet_grp"        {}
 #variable    "encryption"        {}
 variable    "name"              {}
-
-resource "aws_db_subnet_group" "db_subnet" {
-  name       = "var.name"
-  subnet_ids = var.subnet
-
-  tags = {
-    Name = "${var.name}_db"
-  }
-}
 
 //Generate RDS instance
 resource "aws_db_instance" "_instance" {
@@ -27,7 +18,7 @@ resource "aws_db_instance" "_instance" {
   username             = var.db_username
   password             = var.db_password
   skip_final_snapshot  = true
-  db_subnet_group_name = aws_db_subnet_group.db_subnet.id
+  db_subnet_group_name = var.subnet_grp
   storage_encrypted    = "true"
 
   tags = {

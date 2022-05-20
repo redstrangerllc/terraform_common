@@ -2,7 +2,7 @@
 variable  "ssh_key"       {}
 variable	"region"        {}
 variable	"ami"           {}
-variable	"environment"   {}
+variable	"name"          {}
 variable  "sec_group"     {}
 variable  "instance_size" {}
 variable  "subnet"        {}
@@ -27,7 +27,7 @@ resource "aws_instance" "server" {
 #    network_interface_id  = aws_network_interface.nic.id
 #  }
   tags = {
-    Name  = var.environment
+    Name  = var.name
   }
 }
 
