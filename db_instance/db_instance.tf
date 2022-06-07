@@ -30,3 +30,6 @@ resource "aws_db_instance" "_instance" {
 output "address" {
   value                 = aws_db_instance._instance.address
 }
+output "id" {
+  value                 = aws_db_instance._instance.id 
+}
