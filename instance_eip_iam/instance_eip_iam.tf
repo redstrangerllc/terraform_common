@@ -1,8 +1,8 @@
 //variables
 variable  "ssh_key"       {}
-variable	"region"        {}
-variable	"ami"           {}
-variable	"domain"        {}
+variable  "region"        {}
+variable  "ami"           {}
+variable  "domain"        {}
 variable  "sec_group"     {}
 variable  "instance_size" {}
 variable  "subnet"        {}
@@ -26,7 +26,7 @@ resource "aws_instance" "server" {
 
 //Generate elastic IP
 resource "aws_eip" "ip" {
-  instance                = aws_instance.server.id
+  instance              = aws_instance.server.id
 }
 
 //Outputs

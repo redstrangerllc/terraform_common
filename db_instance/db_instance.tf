@@ -8,6 +8,7 @@ variable    "instance_size"     {}
 variable    "subnet_grp"        {}
 #variable    "encryption"        {}
 variable    "name"              {}
+variable    "db_name"           {}
 
 //Generate RDS instance
 resource "aws_db_instance" "_instance" {
@@ -20,6 +21,8 @@ resource "aws_db_instance" "_instance" {
   skip_final_snapshot  = true
   db_subnet_group_name = var.subnet_grp
   storage_encrypted    = "true"
+  db_name              = var.db_name
+  identifier           = var.name
 
   tags = {
     "Name" = "${var.name}"
