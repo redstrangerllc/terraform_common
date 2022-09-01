@@ -7,7 +7,6 @@ variable  "sec_group"     {}
 variable  "instance_size" {}
 variable  "subnet"        {}
 variable  "name"          {}
-variable  "iam_role"      {}
 
 //Generate EC2 instance
 resource "aws_instance" "server" {
@@ -16,7 +15,6 @@ resource "aws_instance" "server" {
   key_name                = var.ssh_key
   vpc_security_group_ids  = var.sec_group
   subnet_id               = var.subnet
-  iam_instance_profile    = var.iam_role
   
   tags = {
     Name = var.name
