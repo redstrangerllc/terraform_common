@@ -1,22 +1,26 @@
-resource "aws_amplify_app" "example" {
+variable "domain"   {}
+variable "app_repo" {}
+
+resource "aws_amplify_app" "amplify_app" {
   name = "app"
+  repository = var.app_repo
 
   # Setup redirect from https://example.com to https://www.example.com
   custom_rule {
-    source = "https://example.com"
+    source = "https://${var.domain}"
     status = "302"
-    target = "https://www.example.com"
+    target = "https://www.${var.domain}"
   }
 }
 
 resource "aws_amplify_branch" "master" {
-  app_id      = aws_amplify_app.example.id
+  app_id      = aws_amplify_app.aplify_app.id
   branch_name = "master"
 }
 
-resource "aws_amplify_domain_association" "example" {
-  app_id      = aws_amplify_app.example.id
-  domain_name = "example.com"
+resource "aws_amplify_domain_association" "amp_domain_assoc" {
+  app_id      = aws_amplify_app.amplify_app.id
+  domain_name = var.domain
 
   # https://example.com
   sub_domain {

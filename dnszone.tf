@@ -14,10 +14,10 @@ resource  "aws_route53_zone" "dns_zone"  {
 //create 
 resource "aws_route53_record" "nameservers" {
   zone_id   = aws_route53_zone.dns_zone.zone_id
-  name      = var.domain
+  name      = "domain"
   type      = "NS"
   ttl       = "30"
-  records   = var.nameservers != null ? var.nameservers : aws_route53_zone.dns_zone.name_servers
+  records   = var.nameservers != "" ? var.nameservers : aws_route53_zone.dns_zone.name_servers
 }
 
 //output zone id and nameserers to main configuration
